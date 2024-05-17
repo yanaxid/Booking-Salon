@@ -13,50 +13,45 @@ import com.booking.models.Service;
 
 public class ValidationService {
 
-	public static void validateInput() {
+	public  void validateInput() {
 	}
 
-	public static void validateCustomerId() {
+	public  void validateCustomerId() {
 	}
 
-	public static int validateInputNumber(String message) {
-		Scanner sc = new Scanner(System.in);
-
+	public  int validateInputNumber(String message, Scanner sc) {
 		boolean isValid = true;
+
 		String numberInput = "";
 
 		while (isValid) {
-
-			if (sc.hasNext()) {
-				numberInput = sc.next();
-				if (numberInput.matches("[0-9]+")) {
-					isValid = false;
-				} else {
-					isValid = true;
-					System.out.println(message);
-					System.out.print("-> ");
-				}
-
+			numberInput = sc.next();
+			if (numberInput.matches("[0-9]+")) {
+				isValid = false;
 			} else {
-				sc.close();
+				isValid = true;
+				
+				if(message.equalsIgnoreCase("")) {
+					message += "Inputan harus angka!";
+				}
+				System.out.println(message);
+				System.out.print("-> ");
 			}
 		}
-
 		return Integer.valueOf(numberInput);
 	}
-	
-	
-	public static Customer validateInputCustomer(List<Person> personList) {
+
+	public  Customer validateInputCustomer(List<Person> personList, PrintService printService, Scanner sc) {
 
 		String customerID = "";
 		Customer customer = null;
 
-		PrintService.showAllCustomer(personList);
+		printService.showAllCustomer(personList);
 
 		boolean status = false;
 		System.out.print("   Masukkan Customer ID: ");
 
-		customerID = MenuService.getSc().nextLine();
+		customerID = sc.nextLine();
 
 		List<Customer> customers = new ArrayList<Customer>();
 		customers = personList.stream().filter(o -> o instanceof Customer).map(x -> (Customer) x).collect(Collectors.toList());
@@ -71,7 +66,7 @@ public class ValidationService {
 		while (status == false) {
 			System.out.println("   ID Customer tidak terdaftar");
 			System.out.print("   Masukkan Customer ID:");
-			customerID = MenuService.getSc().nextLine();
+			customerID = sc.nextLine();
 
 			for (int i = 0; i < customers.size(); i++) {
 				if (customerID.equalsIgnoreCase(customers.get(i).getId())) {
@@ -83,15 +78,14 @@ public class ValidationService {
 
 		return customer;
 	}
-	
-	
-	public static Reservation validateInputReservation(List<Reservation> reservationList) {
+
+	public  Reservation validateInputReservation(List<Reservation> reservationList, Scanner sc) {
 		String reservationID = "";
 		Reservation reservation = null;
 
 		boolean status = false;
 		System.out.print("   Masukkan Reservation ID: ");
-		reservationID = MenuService.getSc().nextLine();
+		reservationID = sc.nextLine();
 
 		for (int i = 0; i < reservationList.size(); i++) {
 			if (reservationID.equalsIgnoreCase(reservationList.get(i).getReservationId())) {
@@ -103,7 +97,7 @@ public class ValidationService {
 		while (status == false) {
 			System.out.println("   ID Reservation tidak terdaftar");
 			System.out.print("   Masukkan Reservation ID: ");
-			reservationID = MenuService.getSc().nextLine();
+			reservationID = sc.nextLine();
 
 			for (int i = 0; i < reservationList.size(); i++) {
 				if (reservationID.equalsIgnoreCase(reservationList.get(i).getReservationId())) {
@@ -116,15 +110,15 @@ public class ValidationService {
 		return reservation;
 	}
 
-	public static Employee validateInputEmployee(List<Person> personList) {
+	public  Employee validateInputEmployee(List<Person> personList, PrintService printService, Scanner sc) {
 		String employeeID = "";
 		Employee employee = null;
 
-		PrintService.showAllEmployee(personList);
+		printService.showAllEmployee(personList);
 
 		boolean status = false;
 		System.out.print("   Masukkan Employee ID: ");
-		employeeID = MenuService.getSc().nextLine();
+		employeeID = sc.nextLine();
 
 		List<Employee> employees = personList.stream().filter(o -> o instanceof Employee).map(x -> (Employee) x).collect(Collectors.toList());
 
@@ -138,7 +132,7 @@ public class ValidationService {
 		while (status == false) {
 			System.out.println("   ID Employee tidak terdaftar");
 			System.out.print("   Masukkan Employee ID: ");
-			employeeID = MenuService.getSc().nextLine();
+			employeeID = sc.nextLine();
 
 			for (int i = 0; i < employees.size(); i++) {
 				if (employeeID.equalsIgnoreCase(employees.get(i).getId())) {
@@ -151,12 +145,12 @@ public class ValidationService {
 		return employee;
 	}
 
-	public static List<Service> validateInputService(List<Service> serviceList) {
+	public  List<Service> validateInputService(List<Service> serviceList, PrintService printService, Scanner sc) {
 
 		String serviceID = "";
 
 		List<Service> listService = new ArrayList<Service>();
-		PrintService.printServices(serviceList);
+		printService.printServices(serviceList);
 
 		boolean isNext = false;
 
@@ -165,7 +159,7 @@ public class ValidationService {
 			boolean status = false;
 			System.out.print("   Masukkan Service Id: ");
 
-			serviceID = MenuService.getSc().next();
+			serviceID = sc.next();
 
 			for (int i = 0; i < serviceList.size(); i++) {
 				if (serviceID.equalsIgnoreCase(serviceList.get(i).getServiceId())) {
@@ -178,7 +172,7 @@ public class ValidationService {
 				System.out.println("   ID Service tidak terdaftar");
 				System.out.print("   Masukkan Service ID:");
 
-				serviceID = MenuService.getSc().next();
+				serviceID = sc.next();
 
 				for (int i = 0; i < serviceList.size(); i++) {
 					if (serviceID.equalsIgnoreCase(serviceList.get(i).getServiceId())) {
@@ -190,12 +184,12 @@ public class ValidationService {
 
 			System.out.print("   Ingin pilih service yang lain (Y/T)? ");
 
-			String x = MenuService.getSc().next();
+			String x = sc.next();
 			if (x.equalsIgnoreCase("y")) {
 				isNext = false;
-			} else if(x.equalsIgnoreCase("t")) {
+			} else if (x.equalsIgnoreCase("t")) {
 				isNext = true;
-				
+
 			}
 
 		} while (!isNext);

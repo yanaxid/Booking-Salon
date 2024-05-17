@@ -1,6 +1,7 @@
 package com.booking.service;
 
 import java.util.List;
+import java.util.Scanner;
 
 import com.booking.models.Customer;
 import com.booking.models.Employee;
@@ -10,12 +11,13 @@ import com.booking.models.Service;
 
 public class ReservationService {
 
-	public static void createReservation(List<Person> personList, List<Service> serviceList, List<Reservation> reservationList) {
-
-		Customer customer = ValidationService.validateInputCustomer(personList);
-		Employee employee = ValidationService.validateInputEmployee(personList);
-		List<Service> services = ValidationService.validateInputService(serviceList);
-		MenuService.getSc().nextLine();
+	public void createReservation(List<Person> personList, List<Service> serviceList, List<Reservation> reservationList, PrintService printService,
+			ValidationService validationService, Scanner sc) {
+		sc.nextLine();
+		Customer customer = validationService.validateInputCustomer(personList, printService, sc);
+		Employee employee = validationService.validateInputEmployee(personList, printService, sc);
+		List<Service> services = validationService.validateInputService(serviceList, printService, sc);
+		
 
 		String reservationID = "";
 
@@ -40,30 +42,27 @@ public class ReservationService {
 		for (int i = 0; i < services.size(); i++) {
 			reservationPrice += services.get(i).getPrice();
 		}
-		
+
 		System.out.println("   Berhasil menambahkan reservasi");
 		System.out.print("   Total Biaya Booking : Rp." + String.format("%,.0f", (double) reservationPrice));
 	}
 
-//	public static void getCustomerByCustomerId(){}
+	public void editReservationWorkstage(List<Reservation> reservationList, List<Person> personList, List<Reservation> reservatioHistory,
+			PrintService printService, ValidationService validationService, Scanner sc) {
 
-	public static void editReservationWorkstage(List<Reservation> reservationList, List<Person> personList, List<Reservation> reservatioHistory) {
-
-		PrintService.showRecentReservation(reservationList);
+		printService.showRecentReservation(reservationList);
 
 		if (reservationList.size() != 0) {
-			Reservation reservation = ValidationService.validateInputReservation(reservationList);
+			Reservation reservation = validationService.validateInputReservation(reservationList, sc);
 
 			System.out.print("   Selesaikan reservasi:");
-			String workstage = MenuService.getSc().nextLine();
+			String workstage = sc.nextLine();
 
 			String rid = "";
 
 			reservation.setWorkstage(workstage);
 
 			if (workstage.equalsIgnoreCase("Finish")) {
-				
-				
 
 				for (int i = 0; i < personList.size(); i++) {
 
@@ -75,13 +74,9 @@ public class ReservationService {
 					}
 
 				}
-				
-				
-				
-				
 
 			}
-			
+
 			rid = reservation.getReservationId();
 
 			if (reservatioHistory.size() == 0) {
@@ -98,7 +93,6 @@ public class ReservationService {
 
 			reservatioHistory.add(reservation);
 
-			
 			reservationList.remove(reservation);
 
 			System.out.println("   Reservasi dengan ID " + rid + " sudah " + workstage);
@@ -106,12 +100,9 @@ public class ReservationService {
 
 	}
 
-	public static void getReservationHistory(List<Reservation> reservationHistory) {
+	public void getReservationHistory(List<Reservation> reservationHistory, PrintService printService) {
 
-		PrintService.showHistoryReservation(reservationHistory);
+		printService.showHistoryReservation(reservationHistory);
 	}
 
-	
-
-	
 }

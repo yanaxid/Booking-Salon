@@ -11,15 +11,21 @@ import com.booking.repositories.PersonRepository;
 import com.booking.repositories.ServiceRepository;
 
 public class MenuService {
+	
+	PersonRepository personRepository = new PersonRepository();
+	ServiceRepository serviceRepository = new ServiceRepository();
 
-	private static List<Person> personList = PersonRepository.getAllPerson();
-	private static List<Service> serviceList = ServiceRepository.getAllService();
-	private static List<Reservation> reservationList = new ArrayList<>();
-	private static List<Reservation> reservatioHistory = new ArrayList<>();
+	private List<Person> personList = personRepository.getAllPerson();
+	private List<Service> serviceList = serviceRepository.getAllService();
+	private List<Reservation> reservationList = new ArrayList<>();
+	private List<Reservation> reservatioHistory = new ArrayList<>();
 
-	private static Scanner sc = new Scanner(System.in);
+	private PrintService printService = new PrintService();
+	private ReservationService reservationService = new ReservationService();
+	private ValidationService validationService = new ValidationService();
+	private Scanner sc = new Scanner(System.in);
 
-	public static void mainMenu() {
+	public void mainMenu() {
 
 		String[] mainMenuArr = { "Show Data", "Create Reservation", "Complete/cancel reservation", "Exit" };
 		String[] subMenuArr = { "Recent Reservation", "Show Customer", "Show Available Employee", "Tampilkan History Reservation + Total Keuntungan",
@@ -35,26 +41,26 @@ public class MenuService {
 			boolean backToSubMenu = true;
 
 			System.out.println();
-			PrintService.printMenu("MAIN MENU", mainMenuArr);
-			optionMainMenu = ValidationService.validateInputNumber("Data harus angka");
+			printService.printMenu("MAIN MENU", mainMenuArr);
+			optionMainMenu = validationService.validateInputNumber("", sc);
 			switch (optionMainMenu) {
 				case 1:
 					do {
-						PrintService.printMenu("SHOW DATA", subMenuArr);
-						optionSubMenu = ValidationService.validateInputNumber("Data harus angka");
+						printService.printMenu("SHOW DATA", subMenuArr);
+						optionSubMenu = validationService.validateInputNumber("", sc);
 
 						switch (optionSubMenu) {
 							case 1:
-								PrintService.showRecentReservation(reservationList);
+								printService.showRecentReservation(reservationList);
 								break;
 							case 2:
-								PrintService.showAllCustomer(personList);
+								printService.showAllCustomer(personList);
 								break;
 							case 3:
-								PrintService.showAllEmployee(personList);
+								printService.showAllEmployee(personList);
 								break;
 							case 4:
-								ReservationService.getReservationHistory(reservatioHistory);
+								reservationService.getReservationHistory(reservatioHistory, printService);
 								break;
 							case 0:
 								backToSubMenu = false;
@@ -62,10 +68,10 @@ public class MenuService {
 					} while (backToSubMenu);
 					break;
 				case 2:
-					ReservationService.createReservation(personList, serviceList, reservationList);
+					reservationService.createReservation(personList, serviceList, reservationList, printService,validationService, sc);
 					break;
 				case 3:
-					ReservationService.editReservationWorkstage(reservationList, personList, reservatioHistory);
+					reservationService.editReservationWorkstage(reservationList, personList, reservatioHistory, printService,validationService, sc);
 					break;
 				case 0:
 					backToMainMenu = false;
@@ -75,10 +81,6 @@ public class MenuService {
 
 		System.out.println("Terimakasih");
 
-	}
-
-	public static Scanner getSc() {
-		return sc;
 	}
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import com.booking.models.Service;
 
 public class ServiceRepository {
-	public static List<Service> getAllService() {
+	public  List<Service> getAllService() {
 		
 		List<Service> serviceList = new ArrayList<>();
 
