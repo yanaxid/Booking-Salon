@@ -82,8 +82,12 @@ public class PrintService {
 
 			String services = "";
 			for (int i = 0; i < e.getServices().size(); i++) {
-				services += e.getServices().get(i).getServiceName() + ", ";
-
+				
+				if(e.getServices().size()-1 == i) {
+					services += e.getServices().get(i).getServiceName();
+				}else {
+					services += e.getServices().get(i).getServiceName() + ", ";
+				}
 			}
 			
 			
@@ -178,10 +182,17 @@ public class PrintService {
 				dataTable.add(tableHeading);
 			}
 
+			
+			
 			String services = "";
 			for (int i = 0; i < e.getServices().size(); i++) {
-				services += e.getServices().get(i).getServiceName() + ", ";
-
+				
+				if(e.getServices().size()-1 == i) {
+					services += e.getServices().get(i).getServiceName();
+				}else {
+					services += e.getServices().get(i).getServiceName() + ", ";
+				}
+			
 			}
 
 			String[] tableBody = { String.valueOf(no), e.getReservationId(), e.getCustomer().getName(), services,
