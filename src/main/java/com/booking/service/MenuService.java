@@ -12,20 +12,20 @@ import com.booking.repositories.ServiceRepository;
 
 public class MenuService {
 	
-	PersonRepository personRepository = new PersonRepository();
-	ServiceRepository serviceRepository = new ServiceRepository();
+	private static PersonRepository personRepository = new PersonRepository();
+	private static ServiceRepository serviceRepository = new ServiceRepository();
 
-	private List<Person> personList = personRepository.getAllPerson();
-	private List<Service> serviceList = serviceRepository.getAllService();
-	private List<Reservation> reservationList = new ArrayList<>();
-	private List<Reservation> reservatioHistory = new ArrayList<>();
+	private static List<Person> personList = personRepository.getAllPerson();
+	private static List<Service> serviceList = serviceRepository.getAllService();
+	private static List<Reservation> reservationList = new ArrayList<>();
+	private static List<Reservation> reservatioHistory = new ArrayList<>();
 
-	private PrintService printService = new PrintService();
-	private ReservationService reservationService = new ReservationService();
-	private ValidationService validationService = new ValidationService();
-	private Scanner sc = new Scanner(System.in);
+	private static PrintService printService = new PrintService();
+	private static ReservationService reservationService = new ReservationService();
+	private static ValidationService validationService = new ValidationService();
+	private static Scanner sc = new Scanner(System.in);
 
-	public void mainMenu() {
+	public static void mainMenu() {
 
 		String[] mainMenuArr = { "Show Data", "Create Reservation", "Complete/cancel reservation", "Exit" };
 		String[] subMenuArr = { "Recent Reservation", "Show Customer", "Show Available Employee", "Tampilkan History Reservation + Total Keuntungan",
