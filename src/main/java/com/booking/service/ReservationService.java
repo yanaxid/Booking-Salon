@@ -56,7 +56,7 @@ public class ReservationService {
 		if (reservationList.size() != 0) {
 			Reservation reservation = validateInputReservation(reservationList);
 
-			System.out.print("Selesaikan reservasi:");
+			System.out.print("   Selesaikan reservasi:");
 			String workstage = MenuService.getSc().nextLine();
 
 			String rid = "";
