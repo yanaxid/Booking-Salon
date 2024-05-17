@@ -75,24 +75,28 @@ public class ReservationService {
 					}
 
 				}
+				
+				
+				rid = reservation.getReservationId();
 
-			}
-
-			rid = reservation.getReservationId();
-
-			if (reservatioHistory.size() == 0) {
-				reservation.setReservationId("Hrsv-01");
-			} else {
-				int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size() - 1).getReservationId().substring(5)) + 1;
-
-				if (index < 10) {
-					reservation.setReservationId("Hrsv-0" + String.valueOf(index));
+				if (reservatioHistory.size() == 0) {
+					reservation.setReservationId("Hrsv-01");
 				} else {
-					reservation.setReservationId("Hrsv-" + String.valueOf(index));
+					int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size() - 1).getReservationId().substring(5)) + 1;
+
+					if (index < 10) {
+						reservation.setReservationId("Hrsv-0" + String.valueOf(index));
+					} else {
+						reservation.setReservationId("Hrsv-" + String.valueOf(index));
+					}
 				}
+
+				reservatioHistory.add(reservation);
+				
+
 			}
 
-			reservatioHistory.add(reservation);
+			
 			reservationList.remove(reservation);
 
 			System.out.println("   Reservasi dengan ID " + rid + " sudah " + workstage);
