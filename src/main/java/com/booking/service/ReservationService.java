@@ -110,7 +110,7 @@ public class ReservationService {
 		Reservation reservation = null;
 
 		boolean status = false;
-		System.out.print("Silahkan Masukkan Employee Id:");
+		System.out.print("   Masukkan Reservation ID: ");
 		reservationID = MenuService.getSc().nextLine();
 
 		for (int i = 0; i < reservationList.size(); i++) {
@@ -121,8 +121,8 @@ public class ReservationService {
 		}
 
 		while (status == false) {
-			System.out.println("ID Reservation tidak terdaftar");
-			System.out.print("Silahkan Masukkan Reservation ID:");
+			System.out.println("   ID Reservation tidak terdaftar");
+			System.out.print("   Masukkan Reservation ID: ");
 			reservationID = MenuService.getSc().nextLine();
 
 			for (int i = 0; i < reservationList.size(); i++) {
@@ -143,7 +143,7 @@ public class ReservationService {
 		PrintService.showAllEmployee(personList);
 
 		boolean status = false;
-		System.out.print("Silahkan Masukkan Employee Id:");
+		System.out.print("   Masukkan Employee ID: ");
 		employeeID = MenuService.getSc().nextLine();
 
 		List<Employee> employees = personList.stream().filter(o -> o instanceof Employee).map(x -> (Employee) x).collect(Collectors.toList());
@@ -156,8 +156,8 @@ public class ReservationService {
 		}
 
 		while (status == false) {
-			System.out.println("ID Employee tidak terdaftar");
-			System.out.print("Silahkan Masukkan Employee Id:");
+			System.out.println("   ID Employee tidak terdaftar");
+			System.out.print("   Masukkan Employee ID: ");
 			employeeID = MenuService.getSc().nextLine();
 
 			for (int i = 0; i < employees.size(); i++) {
@@ -183,7 +183,7 @@ public class ReservationService {
 		do {
 
 			boolean status = false;
-			System.out.print("Silahkan Masukkan Service Id:");
+			System.out.print("   Masukkan Service Id: ");
 
 			serviceID = MenuService.getSc().next();
 
@@ -195,8 +195,8 @@ public class ReservationService {
 			}
 
 			while (status == false) {
-				System.out.println("ID Service tidak terdaftar");
-				System.out.print("Silahkan Masukkan Service Id:");
+				System.out.println("   ID Service tidak terdaftar");
+				System.out.print("   Masukkan Service ID:");
 
 				serviceID = MenuService.getSc().next();
 
@@ -208,7 +208,7 @@ public class ReservationService {
 				}
 			}
 
-			System.out.println("Ingin pilih service yang lain (Y/T)?");
+			System.out.print("   Ingin pilih service yang lain (Y/T)? ");
 
 			String x = MenuService.getSc().next();
 			if (x.equalsIgnoreCase("Y")) {
@@ -230,7 +230,7 @@ public class ReservationService {
 		PrintService.showAllCustomer(personList);
 
 		boolean status = false;
-		System.out.print("Silahkan Masukkan Customer Id:");
+		System.out.print("   Masukkan Customer ID:");
 
 		customerID = MenuService.getSc().nextLine();
 
@@ -245,8 +245,8 @@ public class ReservationService {
 		}
 
 		while (status == false) {
-			System.out.println("ID Customer tidak terdaftar");
-			System.out.print("Silahkan Masukkan Customer Id:");
+			System.out.println("   ID Customer tidak terdaftar");
+			System.out.print("   Masukkan Customer ID:");
 			customerID = MenuService.getSc().nextLine();
 
 			for (int i = 0; i < customers.size(); i++) {
