@@ -1,8 +1,6 @@
 package com.booking.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.booking.models.Customer;
 import com.booking.models.Employee;

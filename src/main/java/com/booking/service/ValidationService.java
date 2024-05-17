@@ -14,11 +14,9 @@ import com.booking.models.Service;
 public class ValidationService {
 
 	public static void validateInput() {
-
 	}
 
 	public static void validateCustomerId() {
-
 	}
 
 	public static int validateInputNumber(String message) {
@@ -56,7 +54,7 @@ public class ValidationService {
 		PrintService.showAllCustomer(personList);
 
 		boolean status = false;
-		System.out.print("   Masukkan Customer ID:");
+		System.out.print("   Masukkan Customer ID: ");
 
 		customerID = MenuService.getSc().nextLine();
 
