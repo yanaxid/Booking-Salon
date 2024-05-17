@@ -4,41 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 import com.booking.models.Person;
 import com.booking.models.Reservation;
 import com.booking.models.Service;
 import com.booking.repositories.PersonRepository;
 import com.booking.repositories.ServiceRepository;
 
-
-
 public class MenuService {
-	
+
 	private static List<Person> personList = PersonRepository.getAllPerson();
 	private static List<Service> serviceList = ServiceRepository.getAllService();
 	private static List<Reservation> reservationList = new ArrayList<>();
 	private static List<Reservation> reservatioHistory = new ArrayList<>();
-	
+
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void mainMenu() {
 
 		String[] mainMenuArr = { "Show Data", "Create Reservation", "Complete/cancel reservation", "Exit" };
-		String[] subMenuArr = { "Recent Reservation", "Show Customer", "Show Available Employee", "Tampilkan History Reservation + Total Keuntungan", "Back to main menu" };
+		String[] subMenuArr = { "Recent Reservation", "Show Customer", "Show Available Employee", "Tampilkan History Reservation + Total Keuntungan",
+				"Back to main menu" };
 
 		int optionMainMenu;
 		int optionSubMenu;
 
-		
 		boolean backToMainMenu = true;
-		
+
 		do {
-			
 
 			boolean backToSubMenu = true;
-			
+
 			System.out.println();
 			PrintService.printMenu("MAIN MENU", mainMenuArr);
 			optionMainMenu = ValidationService.validateInputNumber("Data harus angka");
@@ -76,7 +71,7 @@ public class MenuService {
 					backToMainMenu = false;
 					break;
 			}
-		} while (backToMainMenu) ;
+		} while (backToMainMenu);
 
 		System.out.println("Terimakasih");
 
@@ -85,7 +80,5 @@ public class MenuService {
 	public static Scanner getSc() {
 		return sc;
 	}
-
-	
 
 }
