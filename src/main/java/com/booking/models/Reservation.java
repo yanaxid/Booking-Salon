@@ -43,7 +43,16 @@ public class Reservation {
 			reservationPrice += getServices().get(i).getPrice();
 		}
 		
+		double percentage = 0;
+		if(getCustomer().getMember().getMembershipName().equalsIgnoreCase("silver")) {
+			percentage = 0.05 * reservationPrice;
+		}else if(getCustomer().getMember().getMembershipName().equalsIgnoreCase("gold")) {
+			percentage = 0.1 * reservationPrice;
+		}
 		
-		return reservationPrice;
+		
+		
+		
+		return reservationPrice-percentage;
 	}
 }
