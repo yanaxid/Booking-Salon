@@ -34,7 +34,13 @@ public class PrintService {
 	// Function yang dibuat hanya sebgai contoh bisa disesuaikan kembali
 	public static void showRecentReservation(List<Reservation> reservationList) {
 		if(reservationList.size() == 0) {
-			System.out.println("Data masih kosong");
+			
+			System.out.printf("   +-------------------+");
+			System.out.println();
+			System.out.printf("   | Data masih kosong |");
+			System.out.println();
+			System.out.printf("   +-------------------+\n");
+			
 		}else {
 			createTableReservation(reservationList);
 		}
@@ -56,7 +62,11 @@ public class PrintService {
 	public static void showHistoryReservation(List<Reservation> reservatioHistory) {
 		
 		if(reservatioHistory.size() == 0) {
-			System.out.println("Data masih kosong");
+			System.out.printf("   +-------------------+");
+			System.out.println();
+			System.out.printf("   | Data masih kosong |");
+			System.out.println();
+			System.out.printf("   +-------------------+\n");
 		}else {
 			createTableReservationHistory(reservatioHistory);
 		}
