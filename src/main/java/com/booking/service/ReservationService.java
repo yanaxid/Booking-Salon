@@ -43,8 +43,8 @@ public class ReservationService {
 			reservationPrice += services.get(i).getPrice();
 
 		}
-		System.out.println("Berhasil menambahkan reservasi");
-		System.out.print("Total Biaya Booking : Rp." + String.format("%,.0f", (double) reservationPrice));
+		System.out.println("   Berhasil menambahkan reservasi");
+		System.out.print("   Total Biaya Booking : Rp." + String.format("%,.0f", (double) reservationPrice));
 	}
 
 //	public static void getCustomerByCustomerId(){}
@@ -95,7 +95,7 @@ public class ReservationService {
 			reservatioHistory.add(reservation);
 			reservationList.remove(reservation);
 
-			System.out.println("Reservasi dengan ID " + rid + " sudah " + workstage);
+			System.out.println("   Reservasi dengan ID " + rid + " sudah " + workstage);
 		}
 
 	}
