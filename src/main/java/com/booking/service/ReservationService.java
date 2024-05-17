@@ -34,7 +34,7 @@ public class ReservationService {
 
 		}
 
-		reservationList.add(new Reservation(reservationID, customer, employee, services, "In Progrees"));
+		reservationList.add(new Reservation(reservationID, customer, employee, services));
 
 		double reservationPrice = 0;
 		for (int i = 0; i < services.size(); i++) {

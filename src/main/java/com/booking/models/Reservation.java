@@ -24,14 +24,14 @@ public class Reservation {
 	private String workstage;
 	// workStage (In Process, Finish, Canceled)
 
-	public Reservation(String reservationId, Customer customer, Employee employee, List<Service> services, String workstage) {
+	public Reservation(String reservationId, Customer customer, Employee employee, List<Service> services) {
 
 		this.reservationId = reservationId;
 		this.customer = customer;
 		this.employee = employee;
 		this.services = services;
 		this.reservationPrice = calculateReservationPrice();
-		this.workstage = workstage;
+		this.workstage = "In Progress";
 		
 		
 	};
@@ -49,9 +49,6 @@ public class Reservation {
 		}else if(getCustomer().getMember().getMembershipName().equalsIgnoreCase("gold")) {
 			percentage = 0.1 * reservationPrice;
 		}
-		
-		
-		
 		
 		return reservationPrice-percentage;
 	}
