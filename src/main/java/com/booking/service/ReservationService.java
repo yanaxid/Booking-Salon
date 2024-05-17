@@ -53,57 +53,55 @@ public class ReservationService {
 
 		PrintService.showRecentReservation(reservationList);
 
-		Reservation reservation = validateInputReservation(reservationList);
+		if (reservationList.size() != 0) {
+			Reservation reservation = validateInputReservation(reservationList);
 
-		System.out.print("Selesaikan reservasi:");
-		String workstage = MenuService.getSc().nextLine();
-		
-		String rid = "";
+			System.out.print("Selesaikan reservasi:");
+			String workstage = MenuService.getSc().nextLine();
 
-		reservation.setWorkstage(workstage);
-		
-		
+			String rid = "";
 
-		if (workstage.equalsIgnoreCase("Finish")) {
-			
-			for (int i = 0; i < personList.size(); i++) {
-				
-				if(personList.get(i).getId().equalsIgnoreCase(reservation.getCustomer().getId())) {
-					
-					double currentWallet = ((Customer)personList.get(i)).getWallet() - reservation.getReservationPrice();
-					
-					((Customer)personList.get(i)).setWallet(currentWallet);
+			reservation.setWorkstage(workstage);
+
+			if (workstage.equalsIgnoreCase("Finish")) {
+
+				for (int i = 0; i < personList.size(); i++) {
+
+					if (personList.get(i).getId().equalsIgnoreCase(reservation.getCustomer().getId())) {
+
+						double currentWallet = ((Customer) personList.get(i)).getWallet() - reservation.getReservationPrice();
+
+						((Customer) personList.get(i)).setWallet(currentWallet);
+					}
+
 				}
-				
+
 			}
 
-		} 
-		
-		
-		rid = reservation.getReservationId();
-		
+			rid = reservation.getReservationId();
 
-		if(reservatioHistory.size() == 0 ) {
-			reservation.setReservationId("Hrsv-01");
-		}else {
-			int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size()-1).getReservationId().substring(5))+1;
-			
-			if(index < 10) {
-				reservation.setReservationId("Hrsv-0" + String.valueOf(index));
-			}else {
-				reservation.setReservationId("Hrsv-" + String.valueOf(index));
+			if (reservatioHistory.size() == 0) {
+				reservation.setReservationId("Hrsv-01");
+			} else {
+				int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size() - 1).getReservationId().substring(5)) + 1;
+
+				if (index < 10) {
+					reservation.setReservationId("Hrsv-0" + String.valueOf(index));
+				} else {
+					reservation.setReservationId("Hrsv-" + String.valueOf(index));
+				}
 			}
+
+			reservatioHistory.add(reservation);
+			reservationList.remove(reservation);
+
+			System.out.println("Reservasi dengan ID " + rid + " sudah " + workstage);
 		}
-		
-		reservatioHistory.add(reservation);
-		reservationList.remove(reservation);
-
-		System.out.println("Reservasi dengan ID " + rid + " sudah " + workstage);
 
 	}
 
 	public static void getReservationHistory(List<Reservation> reservationHistory) {
-			
+
 		PrintService.showHistoryReservation(reservationHistory);
 	}
 
