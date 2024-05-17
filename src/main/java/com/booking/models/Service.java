@@ -15,7 +15,9 @@ import lombok.Setter;
 @Builder
 
 public class Service {
+	
     private String serviceId;
     private String serviceName;
     private double price;
+    
 }

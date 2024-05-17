@@ -191,10 +191,11 @@ public class ValidationService {
 			System.out.print("   Ingin pilih service yang lain (Y/T)? ");
 
 			String x = MenuService.getSc().next();
-			if (x.equalsIgnoreCase("Y")) {
+			if (x.equalsIgnoreCase("y")) {
 				isNext = false;
-			} else {
+			} else if(x.equalsIgnoreCase("t")) {
 				isNext = true;
+				
 			}
 
 		} while (!isNext);

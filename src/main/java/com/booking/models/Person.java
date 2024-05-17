@@ -15,7 +15,9 @@ import lombok.experimental.SuperBuilder;
 @ToString
 
 public abstract class Person {
+	
     private String id;
     private String name;    
     private String address;
+    
 }

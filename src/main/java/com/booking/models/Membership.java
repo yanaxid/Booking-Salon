@@ -14,9 +14,6 @@ import lombok.Setter;
 @Builder
 
 public class Membership {
-
 	private String memberId;
 	private String membershipName;
-
-
 }
