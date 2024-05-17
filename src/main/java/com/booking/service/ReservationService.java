@@ -77,24 +77,26 @@ public class ReservationService {
 				}
 				
 				
-				rid = reservation.getReservationId();
-
-				if (reservatioHistory.size() == 0) {
-					reservation.setReservationId("Hrsv-01");
-				} else {
-					int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size() - 1).getReservationId().substring(5)) + 1;
-
-					if (index < 10) {
-						reservation.setReservationId("Hrsv-0" + String.valueOf(index));
-					} else {
-						reservation.setReservationId("Hrsv-" + String.valueOf(index));
-					}
-				}
-
-				reservatioHistory.add(reservation);
+				
 				
 
 			}
+			
+			rid = reservation.getReservationId();
+
+			if (reservatioHistory.size() == 0) {
+				reservation.setReservationId("Hrsv-01");
+			} else {
+				int index = Integer.valueOf(reservatioHistory.get(reservatioHistory.size() - 1).getReservationId().substring(5)) + 1;
+
+				if (index < 10) {
+					reservation.setReservationId("Hrsv-0" + String.valueOf(index));
+				} else {
+					reservation.setReservationId("Hrsv-" + String.valueOf(index));
+				}
+			}
+
+			reservatioHistory.add(reservation);
 
 			
 			reservationList.remove(reservation);
