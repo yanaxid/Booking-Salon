@@ -93,8 +93,12 @@ public class PrintService {
 			dataTable.add(tableBody);
 			
 			
+			if(e.getWorkstage().equalsIgnoreCase("finish")) {
+				total += e.getReservationPrice();
+			}
 			
-			total += e.getReservationPrice();
+			
+			
 			if (dataTable.size() > reservatioHistory.size()) {
 
 				String[] tableFooter = { "", "", "", "", "Total Keuntungan", String.format("%,.0f", (double) total) };
