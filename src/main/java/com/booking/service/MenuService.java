@@ -12,18 +12,17 @@ import com.booking.repositories.ServiceRepository;
 
 public class MenuService {
 	
-	private static PersonRepository personRepository = new PersonRepository();
-	private static ServiceRepository serviceRepository = new ServiceRepository();
 
-	private static List<Person> personList = personRepository.getAllPerson();
-	private static List<Service> serviceList = serviceRepository.getAllService();
+
+	private static List<Person> personList = PersonRepository.getAllPerson();
+	private static List<Service> serviceList = ServiceRepository.getAllService();
 	private static List<Reservation> reservationList = new ArrayList<>();
 	private static List<Reservation> reservatioHistory = new ArrayList<>();
 
 	private static PrintService printService = new PrintService();
 	private static ReservationService reservationService = new ReservationService();
 	private static ValidationService validationService = new ValidationService();
-	private static Scanner sc = new Scanner(System.in);
+	public static Scanner sc = new Scanner(System.in);
 
 	public static void mainMenu() {
 

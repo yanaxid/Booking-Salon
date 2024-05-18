@@ -11,7 +11,7 @@ import com.booking.models.Person;
 
 public class PersonRepository {
 
-	public List<Person> getAllPerson() {
+	public static List<Person> getAllPerson() {
 
 		List<Person> listPerson = new ArrayList<>();
 
